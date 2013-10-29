@@ -118,6 +118,8 @@ void RefreshMeasures()
     SmartWire.flush();
     
     publishDataToUdp(SmartWire.frame, SmartWire.frameLength);
+    
+    publishGasChange();
 
     //AddMeasure("MILLIS", millis());
     //AddMeasure("MEMORY", freeMem());

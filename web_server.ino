@@ -4,7 +4,7 @@
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(192, 168, 1, 20);
-IPAddress serverIp(192, 168, 1, 64);
+IPAddress serverIp(255, 255, 255, 255);
 unsigned int localPort = 8888;      // local port to listen on
 char  ReplyBuffer[] = "acknowledged";       // a string to send back
 
