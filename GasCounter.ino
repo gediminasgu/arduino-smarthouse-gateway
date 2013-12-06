@@ -17,9 +17,6 @@ void CheckGas()
   int gasSensor = analogRead(GAS_SENSOR);
   gasAnalogSum += gasSensor;
   gasAnalogCount++;
-  
-  if (gasAnalogCount >= 1000) {
-    double avg = gasAnalogSum / gasAnalogCount;
 
     if (DEBUG==1) {
       Serial.print("GAS: ");
@@ -27,15 +24,16 @@ void CheckGas()
       Serial.print("\t");
       Serial.print(gasCount);
       Serial.print("\t");
-      Serial.print(gasLastValue);
-      Serial.print("\t");
-      Serial.println(avg);
+      Serial.println(gasLastValue);
     }
+  
+  if (gasAnalogCount >= 1000) {
+    double avg = gasAnalogSum / gasAnalogCount;
 
     if (gasLastValue == 0 && avg < 300) {
       gasLastValue = 1;
       gasCount++;
-      publishChange();
+      publishGasChange();
     }
     else if (gasLastValue == 1 && avg > 350) {
       gasLastValue = 0;
@@ -45,7 +43,7 @@ void CheckGas()
   }
 }
 
-void publishChange() {
+void publishGasChange() {
     Serial.print("GAS_SENSOR01 ");
     Serial.println(gasCount);
     Serial.print("GAS ");
