@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <Wire.h>
+#include <WSWire.h>
 #include <SmartWire.h>
 #include <RTClib.h>
 
