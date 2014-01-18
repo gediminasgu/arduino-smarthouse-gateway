@@ -25,12 +25,13 @@ void setup(void)
 {
   Serial.begin(9600);
   Serial.println("Setting up");
-  WebServerSetup();
+  EhernetSetup();
 
   SmartWire.begin(WIRE_ADDRESS, HOLDING_REGS_SIZE, holdingRegs);
   
   Wire.begin();
   RTC.begin();
+  
   if (! RTC.isrunning()) {
     Serial.println("RTC is NOT running!");
     // following line sets the RTC to the date & time this sketch was compiled
@@ -47,7 +48,7 @@ String line;
 void loop(void)
 {
   readInput();
-  WebServerLoop();
+  EhernetLoop();
   GasCounterLoop();
 
   if (justStarted==1 || (DEBUG==1) || lastMillis + 300000 < millis())
